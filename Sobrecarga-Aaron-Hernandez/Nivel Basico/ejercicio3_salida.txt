@@ -1,2 +1,0 @@
-ID = 101, Nombre = Ana
-ID = 202, Nombre = Matias
