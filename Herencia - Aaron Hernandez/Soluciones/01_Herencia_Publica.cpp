@@ -5,30 +5,31 @@ using namespace std;
 
 class Animal{
     public:
+    string nombre;
     string especie;
 
-    Animal(const string& es) : especie(es) { }
+    Animal(const string& es, const string& nom) : especie(es), nombre(nom) { }
 
     void comer(){
-        cout << especie << " esta comiendo..." << endl;
+        cout << nombre << " el " << especie << " esta comiendo..." << endl;
     }
 };
 
 class Perro: public Animal{
     public:
 
-    Perro() : Animal("Perro") { }
+    Perro(const string& nom) : Animal("Perro", nom){}
 
     void ladrar(){
-        cout << "Guaus..." << endl;
+        cout << nombre << " dice: Guaus..." << endl;
     }
 };
 
 int main(){
-    Animal miAnimal("Perry el ornitorrinco");
+    Animal miAnimal("Ornitorrinco", "Perry");
     miAnimal.comer();
 
-    Perro miPerro;
+    Perro miPerro("Toby");
     miPerro.comer();
     miPerro.ladrar();
     return 0;
