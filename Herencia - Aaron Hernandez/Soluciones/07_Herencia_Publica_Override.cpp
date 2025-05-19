@@ -32,9 +32,13 @@ void probar(Instrumento* inst) {
 
 int main() {
     Instrumento sax("Saxofon");
+    Instrumento *piano = new Instrumento("Piano"); 
 
     Guitarra g;
     probar(&g);
     probar(&sax);
+    probar(piano);
+
+    delete piano; // Liberar memoria del objeto Instrumento creado dinámicamente
     return 0;
 }
