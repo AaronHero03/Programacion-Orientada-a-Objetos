@@ -25,6 +25,8 @@ class Perro: public Animal{
 };
 
 int main(){
+    Animal miAnimal("Perry el ornitorrinco");
+    miAnimal.comer();
 
     Perro miPerro;
     miPerro.comer();
