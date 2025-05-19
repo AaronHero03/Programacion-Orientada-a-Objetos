@@ -1,1 +1,3 @@
-Vehículo encendido
+Carro se ha encendido
+Marca: Ford
+Tipo: Carro
