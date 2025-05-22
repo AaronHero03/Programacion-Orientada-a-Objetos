@@ -1,0 +1,14 @@
+```mermaid
+classDiagram
+    class Dispositivo {
+        +string marca
+    }
+    class Tablet
+    class Telefono
+    class Smartphone
+
+    Dispositivo <|.. Tablet : virtual
+    Dispositivo <|.. Telefono : virtual
+    Tablet <|-- Smartphone
+    Telefono <|-- Smartphone
+```

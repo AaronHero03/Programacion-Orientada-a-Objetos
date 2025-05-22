@@ -1,0 +1,6 @@
+Usuario Juan ha iniciado sesión.
+Moderador Pedro ha iniciado sesión.
+Pedro esta moderando Pedro
+Admin Maria ha iniciado sesión.
+Maria esta moderando Maria
+Maria te ha baneado
