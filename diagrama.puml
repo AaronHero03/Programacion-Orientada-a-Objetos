@@ -1,0 +1,14 @@
+@startuml name
+class ReproductorAudio {
+    reproducir()
+}
+
+class ReproductorVideo {
+    mostrar()
+}
+
+class ReproductorMultimedia
+
+ReproductorMultimedia --|> ReproductorAudio
+ReproductorMultimedia --|> ReproductorVideo
+@enduml
