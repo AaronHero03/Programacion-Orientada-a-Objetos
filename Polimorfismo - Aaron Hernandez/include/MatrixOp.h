@@ -6,45 +6,83 @@
 /**
  * @brief Interfaz abstracta para operaciones avanzadas de matriz.
  */
-class IMatrix {
+ class IMatrix {
 public:
     virtual ~IMatrix() = default;
     virtual double determinant() const = 0;
 };
 
+
+/**
+ * @brief Clase para operaciones con matrices usando memoria dinámica
+ */
 class MatrixOp: public IMatrix{
-public:
-    
-    int rows, cols;
+
+private:
+    int rows_, cols_;
     double *data_;
 
-    // Ejercicio 1
+public:
+    /**
+     * @brief Constructor que crea una matriz de rows x cols
+     * @param rows Número de filas
+     * @param cols Número de columnas
+    */
     MatrixOp(int rows, int cols);
+
+    /**
+     * @brief Destructor
+    */
     ~MatrixOp();
 
+    // Getters
+    int getRows() const{ return rows_;}
+    int getCols() const{ return cols_;}
+    const double* getData() const { return data_; }
+    int getSize() const { return rows_ * cols_; }
+
+    /**
+     * @brief Establece el valor en la posición (i,j)
+     * @throws std::out_of_range Si los índices están fuera de rango
+     */
     void set(int i, int j, double v);
-    void check();
+
+    /**
+     * @brief Obtiene el valor en la posición (i,j)
+     * @throws std::out_of_range Si los índices están fuera de rango
+     */
     double get(int i, int j) const;
 
-    // Ejercicio 2
+    /**
+     * @brief Suma esta matriz con other y almacena el resultado en result
+     * @throws std::invalid_argument Si las dimensiones no coinciden
+    */
     void add(const MatrixOp *other, MatrixOp *result)const;
 
-    // Ejercicio 3
+    // Puntero a una funcion
     using OpFunc = double(*)(double, double);
-    void apply(const MatrixOp *A, const MatrixOp *B, MatrixOp *out, OpFunc op) const;
-    
-    // Ejercicio 4
+
+    /**
+     * @brief Aplica la operación op elemento a elemento entre A y B, guardando en out
+     */
+    void apply(const MatrixOp* A, const MatrixOp* B, MatrixOp* out, OpFunc op) const;
+
+    /**
+     * @brief Itera sobre la diagonal principal aplicando la función fn
+     */
     void forEachDiagonal(void (MatrixOp::*fn)(int i, int j) const) const;
+
+    /**
+     * @brief Imprime el valor en la posicion (i, j)
+    */
     void printAt(int i, int j) const;
 
-    //Polimorfismo
+    // Sobrecarga de operadores
 
-    // Suma elemento a elemento: devuelve una nueva matriz
     MatrixOp operator+(const MatrixOp &other) const;
-
-    // Resta elemento a elemento: devuelve una nueva matriz
     MatrixOp operator-(const MatrixOp &other) const;
 
+    // Implementacion de determinade desde IMatrix
     double determinant() const override;
 };
 
