@@ -67,7 +67,41 @@ int main() {
     M.set(2, 2, 3);
 
     M.forEachDiagonal(&MatrixOp::printAt);
-    M.forEachDiagonal(&MatrixOp::)
+
+    MatrixOp A(2,2), B(2,2);
+    
+    A.set(0, 0, 1);
+    A.set(0, 1, 2);
+    A.set(1, 0, 3);
+    A.set(1, 1, 4);
+
+    B.set(0, 0, 5);
+    B.set(0, 1, 6);
+    B.set(1, 0, 7);
+    B.set(1, 1, 8);
+    
+    MatrixOp C = A + B;
+    MatrixOp D = A - B;
+
+    // Mostrar resultados
+    std::cout << "C[0,0] = " << C.get(0,0) << "\n";
+    std::cout << "D[1,1] = " << D.get(1,1) << "\n";
+
+    double maxElem = maxValue<double>(M.data_, M.rows * M.cols);
+    std::cout << "Máximo elemento de M: " << maxElem << "\n";
+
+    IMatrix *mat = new MatrixOp(2,2);
+    
+    if (auto m = dynamic_cast<MatrixOp*>(mat)) {
+        m->set(0, 0, 5);
+        m->set(0, 1, 2);
+        m->set(1, 0, 7);
+        m->set(1, 1, 9);
+    }
+    
+
+    std::cout << "Determinante: " << mat->determinant() << "\n";
+    delete mat;
 
     return 0;
 }

@@ -1,8 +1,22 @@
 #ifndef MATRIXOP_H
 #define MATRIXOP_H
 
-class MatrixOp{
+#include <stdexcept>
+
+/**
+ * @brief Interfaz abstracta para operaciones avanzadas de matriz.
+ */
+class IMatrix {
 public:
+    virtual ~IMatrix() = default;
+    virtual double determinant() const = 0;
+};
+
+class MatrixOp: public IMatrix{
+public:
+    
+    int rows, cols;
+    double *data_;
 
     // Ejercicio 1
     MatrixOp(int rows, int cols);
@@ -23,10 +37,33 @@ public:
     void forEachDiagonal(void (MatrixOp::*fn)(int i, int j) const) const;
     void printAt(int i, int j) const;
 
-    private: 
-        int rows, cols;
-        double *data_;
+    //Polimorfismo
 
+    // Suma elemento a elemento: devuelve una nueva matriz
+    MatrixOp operator+(const MatrixOp &other) const;
+
+    // Resta elemento a elemento: devuelve una nueva matriz
+    MatrixOp operator-(const MatrixOp &other) const;
+
+    double determinant() const override;
 };
 
+/**
+ * @brief Devuelve el valor máximo en un arreglo contiguo de longitud n.
+ * @tparam T Tipo de dato (double, int, etc.)
+ * @param arr Puntero al primer elemento del arreglo
+ * @param n   Número de elementos
+ * @return    El máximo entre arr[0] … arr[n-1]
+ */
+template<typename T>
+T maxValue(const T*arr, int n){
+    if(n <= 0) throw std::invalid_argument("El arrego debe tener al menos dos elementos");
+    T max = arr[0];
+    for(int i = 0; i < n; i++){
+        if(arr[i] > max) max = arr[i];
+    }
+    return max;
+}
+
 #endif // MATRIXOP_H
+
