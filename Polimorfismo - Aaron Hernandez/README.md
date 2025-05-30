@@ -343,6 +343,47 @@ Relaciones de uso con punteros a función y a miembro
 
 Publicar el diagrama en el readme.md de tu repositorio de solución Pointer_Polimorf.
 
+```mermaid
+classDiagram
+    class IMatrix {
+        <<abstract>>
+        +~IMatrix()
+        +determinant() : double*
+    }
+
+    class MatrixOp {
+        - int rows_
+        - int cols_
+        - double* data_
+        + MatrixOp(int rows, int cols)
+        + ~MatrixOp()
+        + getRows() const : int
+        + getCols() const : int
+        + getData() const : double*
+        + getSize() const : int
+        + set(int i, int j, double v)
+        + get(int i, int j) const : double
+        + add(const MatrixOp* other, MatrixOp* result) const
+        + apply(const MatrixOp* A, const MatrixOp* B, MatrixOp* out, OpFunc op) const
+        + forEachDiagonal(void (MatrixOp::*fn)(int, int) const) const
+        + printAt(int i, int j) const
+        + operator+(const MatrixOp& other) const : MatrixOp
+        + operator-(const MatrixOp& other) const : MatrixOp
+        + determinant() const : double
+        + typedef OpFunc = double(*)(double, double)
+    }
+
+    IMatrix <|-- MatrixOp
+
+    %% Relaciones de uso
+    MatrixOp o-- "1" IMatrix : implementación
+    MatrixOp --> "OpFunc" : usa puntero a función
+    MatrixOp --> "void (MatrixOp::*)(int,int) const" : usa puntero a miembro
+
+    %% Método maxValue (función global)
+    class maxValue~template~
+
+
 > **Recomendación final:**
 > * Ejecuta un test de humo tras cada ejercicio para asegurar que la funcionalidad es la esperada.
 > * Recuerdar usar el proyecto base siguiente:
