@@ -382,7 +382,7 @@ classDiagram
 
     %% Método maxValue (función global)
     class maxValue~template~
-
+```
 
 > **Recomendación final:**
 > * Ejecuta un test de humo tras cada ejercicio para asegurar que la funcionalidad es la esperada.
