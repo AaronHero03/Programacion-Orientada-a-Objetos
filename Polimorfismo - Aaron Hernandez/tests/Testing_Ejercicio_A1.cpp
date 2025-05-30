@@ -6,7 +6,7 @@ using namespace std;
 
 void test_constructor(){
     
-    cout << "Prueba Ejercicio 1. Constructor" << endl << endl;
+    cout << "Prueba Ejercicio A1. Constructor" << endl << endl;
 
     // Test 1: Creacion  // Verifica que la matriz sea de las dimensiones indicadas    
     MatrixOp mat(2, 3);
@@ -28,7 +28,7 @@ void test_constructor(){
 }
 
 void test_destructor(){
-    cout << endl << "Prueba Ejercicio 1. Destructor" << endl << endl;
+    cout << endl << "Prueba Ejercicio A1. Destructor" << endl << endl;
     MatrixOp* mat = new MatrixOp(10, 10);
     delete mat;
     cout << "Destructor. Test 1. Pasado" << endl;

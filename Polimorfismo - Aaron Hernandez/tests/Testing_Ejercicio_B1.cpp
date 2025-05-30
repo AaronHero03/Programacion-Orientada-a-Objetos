@@ -4,39 +4,37 @@
 
 using namespace std;
 
-void test_constructor(){
-    
-    cout << "Prueba Ejercicio 1. Constructor" << endl << endl;
+void test_ejercicio_b1(){
+    cout << "Prueba Ejercicio B1. Sobrecarga de operadores" << endl << endl;
 
-    // Test 1: Creacion  // Verifica que la matriz sea de las dimensiones indicadas    
-    MatrixOp mat(2, 3);
-    assert(mat.getRows() == 2 && mat.getCols() == 3);
-    cout << "Test 1. Pasado" << endl;
+    MatrixOp A(2, 2), B(2, 2);
 
-    // Test 2: Set y get
-    mat.set(0, 1, 5.5);
-    assert(mat.get(0, 1) == 5.5);
-    cout << "Test 2. Pasado" << endl;
+    A.set(0, 0, 1.0); B.set(0, 0, 2.0);
+    A.set(0, 1, 3.0); B.set(0, 1, 4.0);
+    A.set(1, 0, 5.0); B.set(1, 0, 6.0);
+    A.set(1, 1, 7.0); B.set(1, 1, 8.0);
 
-    // Test 3: 
+    MatrixOp C = A + B;
+    MatrixOp D = A - B;
+
+    // Verificar resultados esperados
+    assert(C.get(0, 0) == 3.0 && C.get(1, 1) == 15.0);
+    assert(D.get(0, 1) == -1.0 && D.get(1, 0) == -1.0);
+
+    cout << "Test 1. Suma y resta. Pasado" << endl;
+
+    // Test de dimensiones incompatibles
     try{
-        mat.set(10, 0, 2); // Debe mostrar un error
-        assert(false);
-    } catch(const std::out_of_range&){    
-        cout << "Test 3. Pasado" << endl;
+        MatrixOp E(3, 3);
+        MatrixOp F = A + E;
+        assert(false); // No debe llegar aquí
+    }
+    catch(const std::invalid_argument&){
+        cout << "Test 2. Dimensiones incompatibles. Pasado" << endl;
     }
 }
 
-void test_destructor(){
-    cout << endl << "Prueba Ejercicio 1. Destructor" << endl << endl;
-    MatrixOp* mat = new MatrixOp(10, 10);
-    delete mat;
-    cout << "Destructor. Test 1. Pasado" << endl;
-}
-
 int main(){
-    test_constructor();
-    test_destructor();
-
+    test_ejercicio_b1();
     return 0;
 }

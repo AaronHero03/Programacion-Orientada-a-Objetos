@@ -5,7 +5,7 @@
 using namespace std;
 
 void test_ejercicio_a2(){
-    cout << "Prueba Ejercicio 2" << endl << endl;
+    cout << "Prueba Ejercicio A2" << endl << endl;
 
     // Test1: Suma de matrices
     try{

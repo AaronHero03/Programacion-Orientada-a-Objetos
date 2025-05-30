@@ -13,7 +13,7 @@ double mul(double a, double b){
 }
 
 void test_ejercicio_a3(){
-    cout << "Prueba Ejercicio 3" << endl << endl;
+    cout << "Prueba Ejercicio A3" << endl << endl;
 
     // Test1: Suma de matrices
     MatrixOp a(2, 2), b(2, 2), c(2, 2), d(2,2);
