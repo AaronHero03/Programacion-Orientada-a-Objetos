@@ -6,7 +6,7 @@
 using namespace std;
 
 void test_ejercicio_b3(){
-    cout << "Prueba Ejercicio B3 – Herencia y determinante" << endl << endl;
+    cout << "Prueba Ejercicio B3. Herencia y determinante" << endl << endl;
 
     // Test 1: Matriz 2x2
     IMatrix *mat2x2 = new MatrixOp(2, 2);
