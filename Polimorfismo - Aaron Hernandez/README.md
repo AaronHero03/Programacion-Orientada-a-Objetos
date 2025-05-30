@@ -348,7 +348,7 @@ classDiagram
     class IMatrix {
         <<abstract>>
         +~IMatrix()
-        +determinant() : double*
+        +determinant() : double
     }
 
     class MatrixOp {
@@ -365,7 +365,7 @@ classDiagram
         + get(int i, int j) const : double
         + add(const MatrixOp* other, MatrixOp* result) const
         + apply(const MatrixOp* A, const MatrixOp* B, MatrixOp* out, OpFunc op) const
-        + forEachDiagonal(void (MatrixOp::*fn)(int, int) const) const
+        + forEachDiagonal(fn) const
         + printAt(int i, int j) const
         + operator+(const MatrixOp& other) const : MatrixOp
         + operator-(const MatrixOp& other) const : MatrixOp
@@ -375,13 +375,19 @@ classDiagram
 
     IMatrix <|-- MatrixOp
 
-    %% Relaciones de uso
-    MatrixOp o-- "1" IMatrix : implementación
-    MatrixOp --> "OpFunc" : usa puntero a función
-    MatrixOp --> "void (MatrixOp::*)(int,int) const" : usa puntero a miembro
+    %% Relaciones de uso (punteros a función y miembro)
+    MatrixOp --> OpFunc : usa
+    MatrixOp --> void_member_pointer : usa
 
-    %% Método maxValue (función global)
-    class maxValue~template~
+    class OpFunc {
+        <<typedef>>
+        +double (*)(double, double)
+    }
+
+    class void_member_pointer {
+        <<typedef>>
+        +void (MatrixOp::*)(int, int) const
+    }
 ```
 
 > **Recomendación final:**
